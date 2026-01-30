@@ -13,6 +13,7 @@ if (EXISTS ${picoVscode})
 endif()
 # ====================================================================================
 
+
 cmake_minimum_required(VERSION 3.13)
 
 # == Pico SDK ==
@@ -85,7 +86,11 @@ target_include_directories(TinyML-CNN PRIVATE
 
 target_link_libraries(TinyML-CNN PRIVATE
     pico_stdlib
-    pico_cyw43_arch_none
+    # pico_cyw43_arch_none
+    pico_cyw43_arch_lwip_threadsafe_background
+    pico_lwip_mqtt
+    # pico_mbedtls
+    # pico_lwip_mbedtls
     ${TFLM_TARGET}
 )
 
