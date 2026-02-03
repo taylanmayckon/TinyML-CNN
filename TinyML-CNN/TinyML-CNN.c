@@ -230,26 +230,23 @@ static void pub_request_cb(void *arg, err_t err) {
 static void mqtt_incoming_publish_cb(void *arg,
                                      const char *topic,
                                      u32_t tot_len) {
-    MQTT_CLIENT_DATA_T* state = arg;
-    strncpy(state->topic, topic, sizeof(state->topic));
-    state->topic[sizeof(state->topic)-1] = 0;
+    MQTT_CLIENT_DATA_T *state = (MQTT_CLIENT_DATA_T*) arg;
 
-    // Nova imagem → reseta buffer
-    if (strstr(topic, TOPIC_IMG_SUFFIX)) {
-        bytes_rec_count = 0;
-        flag_nova_imagem = false;
-    }
+    strncpy(state->topic, topic, sizeof(state->topic) - 1);
+    state->topic[sizeof(state->topic) - 1] = '\0';
 }
+
 
 // Callback quando os dados chegam (payload)
 static void mqtt_incoming_data_cb(void *arg,
                                   const u8_t *data,
                                   u16_t len,
                                   u8_t flags) {
-    MQTT_CLIENT_DATA_T* state = arg;
+    MQTT_CLIENT_DATA_T* state = (MQTT_CLIENT_DATA_T*) arg;
 
     // Recepção da imagem
-    if (strstr(state->topic, TOPIC_IMG_SUFFIX)) {
+    if (strcmp(state->topic, TOPIC_IMG_SUFFIX) == 0) {
+
         if (bytes_rec_count + len <= IMAGE_SIZE) {
             memcpy(&image_buffer[bytes_rec_count], data, len);
             bytes_rec_count += len;
@@ -261,14 +258,18 @@ static void mqtt_incoming_data_cb(void *arg,
                 printf("Imagem recebida completa\n");
                 flag_nova_imagem = true;
             }
+            bytes_rec_count = 0; // pronto pra próxima imagem
         }
     }
+
     // Comando de inferência
-    else if (strstr(state->topic, TOPIC_CMD_SUFFIX)) {
+    else if (strcmp(state->topic, TOPIC_CMD_SUFFIX) == 0) {
         flag_rodar_inferencia = true;
         printf("Comando RODAR recebido\n");
     }
 }
+
+
 
 // Callback de conexão MQTT
 static void mqtt_connection_cb(mqtt_client_t *client,
