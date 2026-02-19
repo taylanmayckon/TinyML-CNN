@@ -14,7 +14,9 @@ endif()
 # ====================================================================================
 
 
+
 cmake_minimum_required(VERSION 3.13)
+set(PICO_BOARD pico_w CACHE STRING "Pico board" FORCE) 
 
 # == Pico SDK ==
 include(pico_sdk_import.cmake)
@@ -22,9 +24,6 @@ include(pico_sdk_import.cmake)
 project(TinyML-CNN C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
-
-# If you pass -DPICO_BOARD=... on the command line, this will be overridden.
-set(PICO_BOARD pico_w CACHE STRING "Pico board")
 
 pico_sdk_init()
 

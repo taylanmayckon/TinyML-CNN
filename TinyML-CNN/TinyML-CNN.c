@@ -29,10 +29,10 @@
 // ======================================================
 // CONFIGURAÇÕES DE REDE
 // ======================================================
-#define WIFI_SSID       "SEU_SSID"
-#define WIFI_PASSWORD   "SUA_SENHA"
+#define WIFI_SSID       "Infornet_Taylan"
+#define WIFI_PASSWORD   "suta3021"
 
-#define MQTT_SERVER     "192.168.0.10"
+#define MQTT_SERVER     "192.168.10.10"
 // #define MQTT_PORT       1883
 #define MQTT_USERNAME   "SEU_USER"
 #define MQTT_PASSWORD   "SUA_SENHA"
@@ -41,9 +41,9 @@
 #define MQTT_TOPIC_LEN  100
 
 // Tópicos MQTT do projeto
-#define TOPIC_IMG_SUFFIX  "/vetor_imagem"  // Recebe imagem
-#define TOPIC_CMD_SUFFIX  "/rodarcnn"      // Comando de inferência
-#define TOPIC_RES_SUFFIX  "/resultado"     // Publica resultado
+#define TOPIC_IMG_SUFFIX  "tinyml-cnn/vetor_imagem"
+#define TOPIC_CMD_SUFFIX  "tinyml-cnn/rodarcnn"
+#define TOPIC_RES_SUFFIX  "tinyml-cnn/resultado"
 
 // ======================================================
 // PARÂMETROS DO MODELO
