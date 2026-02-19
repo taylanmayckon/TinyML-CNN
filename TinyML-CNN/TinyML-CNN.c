@@ -29,8 +29,8 @@
 // ======================================================
 // CONFIGURAÇÕES DE REDE
 // ======================================================
-#define WIFI_SSID       "Infornet_Taylan"
-#define WIFI_PASSWORD   "suta3021"
+#define WIFI_SSID       "WIFI_SSID"
+#define WIFI_PASSWORD   "WIFI_PASSWORD"
 
 #define MQTT_SERVER     "192.168.10.10"
 // #define MQTT_PORT       1883
